@@ -1,0 +1,64 @@
+<view class="page-container">
+  <view class="form-container">
+    <t-form>
+      <t-form-item label="菜品名称" required>
+        <t-input 
+          value="{{formData.name}}" 
+          data-field="name" 
+          bind:change="handleInputChange"
+          placeholder="请输入菜品名称"
+        ></t-input>
+      </t-form-item>
+      
+      <t-form-item label="分类" required>
+        <t-picker 
+          value="{{formData.category}}" 
+          data-field="category" 
+          bind:change="handleInputChange"
+        >
+          <t-picker-item 
+            wx:for="{{categories}}" 
+            wx:key="id" 
+            value="{{item.id}}" 
+            label="{{item.name}}"
+          ></t-picker-item>
+        </t-picker>
+      </t-form-item>
+      
+      <t-form-item label="价格" required>
+        <t-input 
+          type="number" 
+          value="{{formData.price}}" 
+          data-field="price" 
+          bind:change="handleInputChange"
+          placeholder="请输入价格"
+        ></t-input>
+      </t-form-item>
+      
+      <t-form-item label="描述">
+        <t-textarea 
+          value="{{formData.description}}" 
+          data-field="description" 
+          bind:change="handleInputChange"
+          placeholder="请输入菜品描述"
+        ></t-textarea>
+      </t-form-item>
+      
+      <t-form-item label="图片">
+        <view class="image-uploader">
+          <image 
+            src="{{formData.image}}" 
+            mode="aspectFill" 
+            class="dish-preview"
+          ></image>
+          <t-button 
+            bindtap="handleImageUpload" 
+            loading="{{imageUploading}}"
+          >{{imageUploading ? '上传中...' : '上传图片'}}</t-button>
+        </view>
+      </t-form-item>
+      
+      <t-button theme="primary" bindtap="submitForm">提交</t-button>
+    </t-form>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+.cart-item-image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.total-price {
+  text-align: right;
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 20rpx;
+  background: #fff;
+  margin: 20rpx 0;
+  border-radius: 10rpx;
+}

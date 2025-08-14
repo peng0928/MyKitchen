@@ -1,0 +1,131 @@
+// pages/home/home.js
+const imageCdn = 'https://tdesign.gtimg.com/mobile/demos';
+const swiperList = [
+  `${imageCdn}/swiper1.png`,
+  `${imageCdn}/swiper2.png`,
+  `${imageCdn}/swiper1.png`,
+  `${imageCdn}/swiper2.png`,
+  `${imageCdn}/swiper1.png`,
+];
+
+
+Page({
+  data: {
+    currentTab: 'home', // 底部导航当前选中项
+    recommendList: [
+      {
+        id: 1,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },
+      {
+        id: 2,
+        name: '红烧排骨红烧排骨红烧排骨红烧排骨红烧排骨红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },
+      {
+        id: 2,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },      {
+        id: 2,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },      {
+        id: 2,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },      {
+        id: 2,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },      {
+        id: 2,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      },
+      {
+        id: 2,
+        name: '红烧排骨',
+        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        price: 38,
+        sales: 256,
+        tags: ['招牌', '热销']
+      }
+    ],
+    current: 0,
+    autoplay: false,
+    duration: 500,
+    interval: 5000,
+    swiperList,
+    leftColumnList: [] as any[], // 左列数据
+    rightColumnList: [] as any[], // 右列数据
+  },
+
+  // 切换底部导航
+  handleTabChange(e) {
+    const { value } = e.detail;
+    console.log(value)
+
+    this.setData({ currentTab: value });
+
+    if (value === 'order') {
+      wx.navigateTo({ url: '/pages/order/order' });
+    } 
+    else if (value === 'mine') {
+      wx.navigateTo({ url: '/pages/mine/mine' });
+    }else if (value === 'kitchen') {
+      wx.navigateTo({ url: '/pages/kitchen/kitchen' });
+    }
+  },
+  onShow() {
+    console.log('onShow');
+    this.setData({ currentTab: 'home' });
+  },
+  onLoad() {
+    // 初始化时分配数据到两列
+    this.distributeItems();
+  },
+
+  // 分配数据到左右两列
+  distributeItems() {
+    const left: any[] = [];
+    const right: any[] = [];
+    
+    // 简单交替分配（可根据实际高度计算更复杂的分配逻辑）
+    this.data.recommendList.forEach((item, index) => {
+      if (index % 2 === 0) {
+        left.push(item);
+      } else {
+        right.push(item);
+      }
+    });
+    
+    this.setData({
+      leftColumnList: left,
+      rightColumnList: right
+    });
+  },
+
+});

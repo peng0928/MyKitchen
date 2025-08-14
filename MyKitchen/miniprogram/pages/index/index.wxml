@@ -1,0 +1,69 @@
+<view class="home-page">
+  <!-- 原有轮播图代码保持不变 -->
+  <t-swiper class="scale-card-theme" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}"
+    interval="{{interval}}" bindchange="onChange" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}"
+    image-props="{{ { shape: 'round' } }}" previousMargin="34px" nextMargin="34px" t-class-nav="card-theme-nav"
+    t-class-prev-image="scale-candidate" t-class-next-image="scale-candidate" />
+  
+  <!-- 今日推荐 -->
+  <view class="section-title">今日推荐</view>
+
+  <!-- 修改为双列布局 -->
+  <view class="two-column-container">
+    <!-- 左列 -->
+    <view class="column left-column">
+      <view 
+        wx:for="{{leftColumnList}}" 
+        wx:key="id" 
+        class="food-item"
+      >
+        <view style="text-align: center;">
+          <image src="{{item.image}}" mode="aspectFill" class="food-image" />
+        </view>
+        <view class="content">{{item.name}}</view>
+        <view class="desc">
+          <block wx:for="{{item.tags}}" wx:key="*this">
+            <t-tag size="small" theme="primary">{{item}}</t-tag>
+          </block>
+        </view>
+        <view class="food-footer">
+          <text class="price">¥{{item.price}}</text>
+          <text class="sales">已售{{item.sales}}份</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 右列 -->
+    <view class="column right-column">
+      <view 
+        wx:for="{{rightColumnList}}" 
+        wx:key="id" 
+        class="food-item"
+      >
+        <!-- 内容与左列相同 -->
+        <view style="text-align: center;">
+          <image src="{{item.image}}" mode="aspectFill" class="food-image" />
+        </view>
+        <view class="content">{{item.name}}</view>
+        <view class="desc">
+          <block wx:for="{{item.tags}}" wx:key="*this">
+            <t-tag size="small" theme="primary">{{item}}</t-tag>
+          </block>
+        </view>
+        <view class="food-footer">
+          <text class="price">¥{{item.price}}</text>
+          <text class="sales">已售{{item.sales}}份</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部导航保持不变 -->
+  <t-tab-bar t-class="t-tab-bar" value="{{currentTab}}" bindchange="handleTabChange" shape="round" theme="tag"
+    split="{{false}}">
+    <t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
+    <t-tab-bar-item value="order" icon="shop">订单</t-tab-bar-item>
+    <t-tab-bar-item value="kitchen" icon="houses">厨房</t-tab-bar-item>
+    <t-tab-bar-item value="mine" icon="user">我的</t-tab-bar-item>
+  </t-tab-bar>
+</view>

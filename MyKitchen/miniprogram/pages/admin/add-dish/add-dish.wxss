@@ -1,0 +1,18 @@
+.form-container {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 10rpx;
+}
+
+.image-uploader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dish-preview {
+  width: 200rpx;
+  height: 150rpx;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+}

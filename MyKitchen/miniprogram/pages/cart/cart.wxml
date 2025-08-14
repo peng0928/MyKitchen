@@ -1,0 +1,35 @@
+<view class="page-container">
+  <t-cell-group title="购物车">
+    <block wx:if="{{cartItems.length > 0}}">
+      <t-cell wx:for="{{cartItems}}" wx:key="dish.id">
+        <image slot="image" src="{{item.dish.image}}" mode="aspectFill" class="cart-item-image"></image>
+        <view slot="title">{{item.dish.name}}</view>
+        <view slot="note">¥{{item.dish.price}}/份</view>
+        <t-stepper 
+          slot="right-icon" 
+          value="{{item.count}}" 
+          bind:change="handleCountChange" 
+          data-id="{{item.dish.id}}"
+          min="1"
+          max="99"
+        ></t-stepper>
+        <t-button 
+          slot="right-icon" 
+          size="small" 
+          theme="danger" 
+          bindtap="removeItem" 
+          data-id="{{item.dish.id}}"
+        >删除</t-button>
+      </t-cell>
+    </block>
+    <block wx:else>
+      <view class="empty-tip">购物车空空如也</view>
+    </block>
+  </t-cell-group>
+  
+  <view class="total-price">
+    总计: ¥{{totalPrice}}
+  </view>
+  
+  <t-button theme="primary" bindtap="submitOrder">提交订单</t-button>
+</view>

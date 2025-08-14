@@ -1,0 +1,31 @@
+<!-- pages/kitchen-list/kitchen-list.wxml -->
+<view class="kitchen-page">
+  <!-- 顶部标题 -->
+  <!-- 厨房列表 -->
+  <view class="kitchen-list">
+    <view 
+      class="kitchen-card" 
+      wx:for="{{kitchenList}}" 
+      wx:key="id"
+      bindtap="goToKitchenDetail"
+      data-id="{{item.id}}"
+    >
+    <view class="center"> 
+      <image src="{{item.image}}" mode="aspectFill" class="kitchen-image" />
+    </view>
+      <view class="kitchen-info">
+        <view class="kitchen-name">{{item.name}}</view>
+        <view class="kitchen-meta">
+          <view class="meta-item">
+            <t-icon name="user" size="32rpx"></t-icon>
+            <text>{{item.memberCount}}人</text>
+          </view>
+          <view class="meta-item">
+            <t-icon name="star-filled" size="32rpx" color="#FFC300"></t-icon>
+            <text>{{item.rating}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
