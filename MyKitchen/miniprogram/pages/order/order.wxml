@@ -1,9 +1,14 @@
-<view style="background-color: black; padding: 20rpx;">
+<view style=" padding: 20rpx;">
   <image src="/images/logo.png" class="img-home" />
+</view>
+<view>
+  <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" space-evenly="{{false}}"  bind:click="onTabsClick" t-class="custom-tabs">
+  <t-tab-panel label="点菜" value="0" />
+  <t-tab-panel label="评价" value="1" />
+</t-tabs>
 </view>
 
 <view class="side-bar-wrapper" style="height: calc(100vh - {{navbarHeight}}px)">
-
   <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
     <t-side-bar-item wx:for="{{categories}}" wx:key="label" value="{{item.value || index}}" label="{{item.label}}"
       badge-props="{{item.badgeProps}}" />
