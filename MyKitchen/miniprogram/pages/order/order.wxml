@@ -1,4 +1,9 @@
+<view style="background-color: black; padding: 20rpx;">
+  <image src="/images/logo.png" class="img-home" />
+</view>
+
 <view class="side-bar-wrapper" style="height: calc(100vh - {{navbarHeight}}px)">
+
   <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
     <t-side-bar-item wx:for="{{categories}}" wx:key="label" value="{{item.value || index}}" label="{{item.label}}"
       badge-props="{{item.badgeProps}}" />
@@ -7,10 +12,10 @@
     <view wx:for="{{categories}}" wx:key="label" class="section">
       <view class="title">{{item.title || item.label}}</view>
       <t-grid column="{{1}}" border="{{false}}">
-        <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" >
+        <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
           <view class="items">
             <image src="{{cargo.image}}" mode="aspectFill" style="width: 200rpx; height: 100rpx;" />
-          <t-tag size="small" theme="primary">{{cargo.label}}</t-tag>
+            <t-tag size="small" theme="primary">{{cargo.label}}</t-tag>
           </view>
         </block>
       </t-grid>

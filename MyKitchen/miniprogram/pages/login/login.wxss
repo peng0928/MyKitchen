@@ -1,64 +1,208 @@
-/**index.wxss**/
 page {
-  height: 100vh;
+  background-color: #f5f7fa;
+  height: 100%;
+}
+
+.login-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 40rpx;
 }
 
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
+.login-card {
+  width: 100%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 40rpx;
 }
 
-.userinfo {
+.login-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #aaa;
-  width: 80%;
+  margin-bottom: 60rpx;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.logo {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 24rpx;
+  border-radius: 50rpx;
+  border-color: white;
 }
 
-.usermotto {
-  margin-top: 200px;
+.welcome-text {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.sub-text {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
 }
 
 .avatar-wrapper {
   padding: 0;
-  width: 56px !important;
-  border-radius: 8px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  width: 160rpx !important;
+  height: 160rpx;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 16rpx;
+  background-color: #f0f2f5;
 }
 
 .avatar {
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.nickname-wrapper {
-  display: flex;
   width: 100%;
-  padding: 16px;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatar-edit-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 48rpx;
+  height: 48rpx;
+  background: #1E88E5;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.avatar-hint {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  font-size: 28rpx;
   box-sizing: border-box;
-  border-top: .5px solid rgba(0, 0, 0, 0.1);
-  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
-  color: black;
 }
 
-.nickname-label {
-  width: 105px;
+.placeholder {
+  color: #ccc;
 }
 
-.nickname-input {
-  flex: 1;
+.remember-me {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+  font-size: 26rpx;
 }
 
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.forgot-password {
+  color: #1E88E5;
+}
+
+.login-button {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1E88E5;
+  color: white;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 40rpx;
+}
+
+.auth-button {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1E88E5;
+  color: white;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.version-warning {
+  text-align: center;
+  color: #ff4d4f;
+  font-size: 28rpx;
+  padding: 40rpx 0;
+}
+
+.user-info-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-bottom: 24rpx;
+}
+
+.user-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+
+.logout-button {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: transparent;
+  color: #1E88E5;
+  border: 1rpx solid #1E88E5;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.register-link {
+  color: #1E88E5;
+  margin-left: 16rpx;
+}

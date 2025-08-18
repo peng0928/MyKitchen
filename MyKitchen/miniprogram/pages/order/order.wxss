@@ -81,3 +81,12 @@ page .round-image {
 .items{
   margin-bottom: 30rpx;
 }
+
+.img-home{
+  display: block;
+  margin: 0 auto;
+  max-height: 375rpx;
+  width: 95%;
+  border-radius: 10px;
+  background-color: white;
+}

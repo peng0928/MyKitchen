@@ -1,11 +1,9 @@
-// index.ts
 // 获取应用实例
 const app = getApp<IAppOption>()
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
 Component({
   data: {
-    motto: '',
     userInfo: {
       avatarUrl: defaultAvatarUrl,
       nickName: '',
@@ -14,6 +12,7 @@ Component({
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
     canIUseNicknameComp: wx.canIUse('input.type.nickname'),
   },
+
   methods: {
     // 事件处理函数
     bindViewTap() {
@@ -21,8 +20,8 @@ Component({
         url: '../logs/logs',
       })
     },
+    
     onChooseAvatar(e: any) {
-      console.log(111, e)
       const { avatarUrl } = e.detail
       const { nickName } = this.data.userInfo
       this.setData({
@@ -30,8 +29,8 @@ Component({
         hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
       })
     },
+    
     onInputChange(e: any) {
-      console.log(e)
       const nickName = e.detail.value
       const { avatarUrl } = this.data.userInfo
       this.setData({
@@ -39,16 +38,11 @@ Component({
         hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
       })
     },
+    
     getUserProfile() {
-      // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-      console.log()
-
       wx.getUserProfile({
-        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        desc: '用于完善会员资料',
         success: (res) => {
-      console.log(222)
-
-          console.log(res)
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
@@ -56,10 +50,65 @@ Component({
         }
       })
     },
-    onLoad(){
-      console.log(this.data)
-      this.getUserProfile()
+    
+    handleLogin() {
+      if (!this.data.userInfo.nickName) {
+        wx.showToast({
+          title: '请输入用户名',
+          icon: 'none'
+        })
+        return
+      }
+      
+      // 这里添加实际的登录逻辑
+      wx.showLoading({
+        title: '登录中...',
+      })
+      
+      setTimeout(() => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success'
+        })
+        // 登录成功后跳转到首页
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
+      }, 1500)
+    },
+    
+    handleLogout() {
+      this.setData({
+        userInfo: {
+          avatarUrl: defaultAvatarUrl,
+          nickName: '',
+        },
+        hasUserInfo: false
+      })
+    },
+    
+    navigateToForgotPassword() {
+      wx.navigateTo({
+        url: '/pages/forgot-password/forgot-password'
+      })
+    },
+    
+    navigateToRegister() {
+      wx.navigateTo({
+        url: '/pages/register/register'
+      })
+    },
+    
+    onLoad() {
+      // 检查本地存储中是否有用户信息
+      const userInfo = wx.getStorageSync('userInfo')
+      if (userInfo) {
+        this.setData({
+          userInfo,
+          hasUserInfo: true
+        })
+      }
     }
-  },
-
+  }
 })
