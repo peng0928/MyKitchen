@@ -102,7 +102,7 @@ Page({
     query.selectAll('.title').boundingClientRect();
     query.select('.custom-navbar').boundingClientRect();
     
-    query.exec((res: [WechatMiniprogram.BoundingClientRectResult[], WechatMiniprogram.BoundingClientRectResult]) => {
+    query.exec((res) => {
       console.log(res)
       const [rects,  navbarHeight] = res;
       this.offsetTopList = rects.map((item) => item.top - navbarHeight);
@@ -125,7 +125,7 @@ Page({
 
   onScroll(e: { detail: { scrollTop: number } }) {
     const { scrollTop } = e.detail;
-    const threshold = 50; // 下一个标题与顶部的距离
+    const threshold = 100; // 下一个标题与顶部的距离
     const direction = scrollTop > this.lastScrollTop ? 'down' : 'up';
     this.lastScrollTop = scrollTop;
 

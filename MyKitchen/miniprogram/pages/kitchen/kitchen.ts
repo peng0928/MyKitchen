@@ -1,7 +1,8 @@
 // pages/kitchen-list/kitchen-list.ts
 Page({
   data: {
-    kitchenList: [
+    kitchenList: [],
+    OrikitchenList: [
       {
         id: 1,
         name: "阳光厨房",
@@ -37,7 +38,9 @@ Page({
         memberCount: 6,
         rating: 4.7
       }
-    ]
+    ],
+    filteredKitchenList: [], // filtered list for search
+    activeTab: 'my',
   },
 
   // 返回上一页
@@ -50,5 +53,35 @@ Page({
     const { id } = e.currentTarget.dataset
     console.log(id)
     wx.navigateTo({ url: '/pages/order/order' });
+  },
+    
+  handleSearchInput(e:any ) {
+    const keyword = e.detail.value.trim().toLowerCase();
+    console.log(keyword)
+    if (!keyword) {
+      this.setData({ kitchenList: this.data.OrikitchenList });
+      return;
+    }
+    
+    const filtered = this.data.OrikitchenList.filter(item => 
+      item.name.toLowerCase().includes(keyword)
+    );
+    this.setData({ kitchenList: filtered });
+  },
+  
+  goToCreateKitchen() {
+    wx.navigateTo({
+      url: '/pages/create-kitchen/create-kitchen'
+    });
+  },
+  switchTab(e:any) {
+    const tab = e.detail.value;
+    console.log(e)
+    this.setData({
+      activeTab: tab,
+    });
+  },
+  onLoad() {
+    this.setData({ kitchenList: this.data.OrikitchenList });
   }
 })

@@ -16,7 +16,7 @@ Page({
       {
         id: 1,
         name: '红烧排骨',
-        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        image: 'https://pic640.weishi.qq.com/6wsz5JKd7-2nKV89JiDC54ifl0mXuzMb6VxRF.jpg',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
@@ -24,7 +24,7 @@ Page({
       {
         id: 2,
         name: '红烧排骨红烧排骨红烧排骨红烧排骨红烧排骨红烧排骨',
-        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        image: 'https://img1.baidu.com/it/u=1604178178,534306847&fm=253&app=138&f=JPEG?w=500&h=653',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
@@ -32,28 +32,28 @@ Page({
       {
         id: 2,
         name: '红烧排骨',
-        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        image: 'https://pic640.weishi.qq.com/6wsz5JKd7-2nKV89JiDC54ifl0mXuzMb6VxRF.jpg',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
         id: 2,
         name: '红烧排骨',
-        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        image: 'https://img1.baidu.com/it/u=1126187458,1736952758&fm=253&app=138&f=JPEG?w=500&h=625',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
         id: 2,
         name: '红烧排骨',
-        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        image: 'https://img2.baidu.com/it/u=3568111225,568556509&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
         id: 2,
         name: '红烧排骨',
-        image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        image: 'https://img2.baidu.com/it/u=3603785451,347959206&fm=253&fmt=auto&app=138&f=JPEG?w=1010&h=500',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
@@ -94,7 +94,7 @@ Page({
       wx.navigateTo({ url: '/pages/order/order' });
     } 
     else if (value === 'mine') {
-      wx.navigateTo({ url: '/pages/mine/mine' });
+      wx.navigateTo({ url: '/pages/login/login' });
     }else if (value === 'kitchen') {
       wx.navigateTo({ url: '/pages/kitchen/kitchen' });
     }
@@ -127,5 +127,5 @@ Page({
       rightColumnList: right
     });
   },
-
+  onChange(){}
 });

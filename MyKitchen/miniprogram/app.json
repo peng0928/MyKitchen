@@ -5,7 +5,8 @@
     "pages/order/order",
     "pages/cart/cart",
     "pages/admin/add-dish/add-dish",
-    "pages/kitchen/kitchen"
+    "pages/kitchen/kitchen",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarTitleText": "御膳房",
@@ -29,6 +30,7 @@
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item",
     "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "t-icon": "tdesign-miniprogram/icon/icon",
-    "t-swiper": "tdesign-miniprogram/swiper/swiper"
+    "t-swiper": "tdesign-miniprogram/swiper/swiper",
+    "t-tag": "tdesign-miniprogram/tag/tag"
   }
 }

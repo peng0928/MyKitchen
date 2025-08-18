@@ -78,3 +78,6 @@ page .round-image {
   font-weight: 600;
   color: var(--td-text-color-primary);
 }
+.items{
+  margin-bottom: 30rpx;
+}

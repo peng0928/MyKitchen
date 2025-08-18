@@ -4,7 +4,7 @@
     interval="{{interval}}" bindchange="onChange" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}"
     image-props="{{ { shape: 'round' } }}" previousMargin="34px" nextMargin="34px" t-class-nav="card-theme-nav"
     t-class-prev-image="scale-candidate" t-class-next-image="scale-candidate" />
-  
+
   <!-- 今日推荐 -->
   <view class="section-title">今日推荐</view>
 
@@ -12,47 +12,51 @@
   <view class="two-column-container">
     <!-- 左列 -->
     <view class="column left-column">
-      <view 
-        wx:for="{{leftColumnList}}" 
-        wx:key="id" 
-        class="food-item"
-      >
+      <view wx:for="{{leftColumnList}}" wx:key="id" class="food-item">
         <view style="text-align: center;">
-          <image src="{{item.image}}" mode="aspectFill" class="food-image" />
+          <image src="{{item.image}}" mode="widthFix" class="food-image" />
         </view>
-        <view class="content">{{item.name}}</view>
-        <view class="desc">
-          <block wx:for="{{item.tags}}" wx:key="*this">
-            <t-tag size="small" theme="primary">{{item}}</t-tag>
-          </block>
-        </view>
-        <view class="food-footer">
-          <text class="price">¥{{item.price}}</text>
-          <text class="sales">已售{{item.sales}}份</text>
+        <view style="padding: 10rpx">
+          <view class="content">{{item.name}}</view>
+          <view class="gap6">
+            <view wx:for="{{item.tags}}" wx:key="*this">
+              <t-tag size="small" theme="default">{{item}}</t-tag>
+            </view>
+          </view>
+          <view class="food-footer">
+            <view class="user">
+              <t-icon name="user" size="30rpx" />123
+            </view>
+            <view class="heart">
+              <t-icon name="heart" size="28rpx" />126
+            </view>
+          </view>
         </view>
       </view>
     </view>
-    
+
     <!-- 右列 -->
     <view class="column right-column">
-      <view 
-        wx:for="{{rightColumnList}}" 
-        wx:key="id" 
-        class="food-item"
-      >
+      <view wx:for="{{rightColumnList}}" wx:key="id" class="food-item">
         <!-- 内容与左列相同 -->
         <view style="text-align: center;">
-          <image src="{{item.image}}" mode="aspectFill" class="food-image" />
+          <image src="{{item.image}}" mode="widthFix" class="food-image" />
         </view>
-        <view class="content">{{item.name}}</view>
-        <view class="desc">
-          <block wx:for="{{item.tags}}" wx:key="*this">
-            <t-tag size="small" theme="primary">{{item}}</t-tag>
-          </block>
-        </view>
-        <view class="food-footer">
-          <text class="price">¥{{item.price}}</text>
-          <text class="sales">已售{{item.sales}}份</text>
+        <view style="padding: 10rpx">
+          <view class="content">{{item.name}}</view>
+          <view class="gap6">
+            <view wx:for="{{item.tags}}" wx:key="*this">
+              <t-tag size="small" theme="default">{{item}}</t-tag>
+            </view>
+          </view>
+          <view class="food-footer">
+            <view class="user">
+              <t-icon name="user" size="30rpx" />123
+            </view>
+            <view class="heart">
+              <t-icon name="heart" size="28rpx" />135
+            </view>
+          </view>
         </view>
       </view>
     </view>
