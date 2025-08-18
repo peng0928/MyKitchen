@@ -79,15 +79,13 @@
   justify-content: space-between;
   padding-left: 20rpx;
   padding-right: 20rpx;
+  padding-bottom: 180rpx;
 }
 
 .column {
-  width: 48%;
+  width: 49%;
 }
 
-.left-column {
-  margin-right: 2%;
-}
 
 .food-item {
   margin-bottom: 20rpx;
@@ -102,7 +100,7 @@
   width: 100%;
   max-height: 580rpx; /* 高度自适应 */
   min-height: 280rpx; /* 高度自适应 */
-  border-radius: 8rpx;
+  border-radius: 8rpx 8rpx 0 0; /* 仅左上、右上圆
 }
 
 

@@ -11,12 +11,12 @@
   <!-- 修改为双列布局 -->
   <view class="two-column-container">
     <!-- 左列 -->
-    <view class="column left-column">
+    <view class="column">
       <view wx:for="{{leftColumnList}}" wx:key="id" class="food-item">
         <view style="text-align: center;">
           <image src="{{item.image}}" mode="widthFix" class="food-image" />
         </view>
-        <view style="padding: 10rpx">
+        <view style="padding: 12rpx">
           <view class="content">{{item.name}}</view>
           <view class="gap6">
             <view wx:for="{{item.tags}}" wx:key="*this">
@@ -36,13 +36,13 @@
     </view>
 
     <!-- 右列 -->
-    <view class="column right-column">
+    <view class="column">
       <view wx:for="{{rightColumnList}}" wx:key="id" class="food-item">
         <!-- 内容与左列相同 -->
         <view style="text-align: center;">
           <image src="{{item.image}}" mode="widthFix" class="food-image" />
         </view>
-        <view style="padding: 10rpx">
+        <view style="padding: 12rpx">
           <view class="content">{{item.name}}</view>
           <view class="gap6">
             <view wx:for="{{item.tags}}" wx:key="*this">
@@ -66,8 +66,9 @@
   <t-tab-bar t-class="t-tab-bar" value="{{currentTab}}" bindchange="handleTabChange" shape="round" theme="tag"
     split="{{false}}">
     <t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
-    <t-tab-bar-item value="order" icon="shop">订单</t-tab-bar-item>
+    <t-tab-bar-item value="menu" icon="menu">菜单</t-tab-bar-item>
     <t-tab-bar-item value="kitchen" icon="houses">厨房</t-tab-bar-item>
+    <t-tab-bar-item value="order" icon="shop">订单</t-tab-bar-item>
     <t-tab-bar-item value="mine" icon="user">我的</t-tab-bar-item>
   </t-tab-bar>
 </view>

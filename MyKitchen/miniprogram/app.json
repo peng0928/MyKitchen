@@ -9,7 +9,7 @@
     "pages/login/login"
   ],
   "window": {
-    "navigationBarTitleText": "御膳房",
+    "navigationBarTitleText": "饭搭子",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black"
   },

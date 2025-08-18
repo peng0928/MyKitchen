@@ -82,6 +82,16 @@ Page({
         })),
       },
       {
+        label: '饮料',
+        title: '饮料🥤',
+        icon: 'app',
+        badgeProps: {},
+        items: new Array(6).fill(null).map((_, index) => ({
+          label: '标题文字',
+          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+        })),
+      },
+      {
         label: '主食',
         title: '主食🍚',
         icon: 'app',
