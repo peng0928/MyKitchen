@@ -30,35 +30,35 @@ Page({
         tags: ['招牌', '热销']
       },
       {
-        id: 2,
+        id: 11,
         name: '红烧排骨',
         image: 'https://pic640.weishi.qq.com/6wsz5JKd7-2nKV89JiDC54ifl0mXuzMb6VxRF.jpg',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
-        id: 2,
+        id: 12,
         name: '红烧排骨',
         image: 'https://img1.baidu.com/it/u=1126187458,1736952758&fm=253&app=138&f=JPEG?w=500&h=625',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
-        id: 2,
+        id: 13,
         name: '红烧排骨',
         image: 'https://img2.baidu.com/it/u=3568111225,568556509&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
-        id: 2,
+        id: 14,
         name: '红烧排骨',
         image: 'https://img2.baidu.com/it/u=3603785451,347959206&fm=253&fmt=auto&app=138&f=JPEG?w=1010&h=500',
         price: 38,
         sales: 256,
         tags: ['招牌', '热销']
       },      {
-        id: 2,
+        id: 16,
         name: '红烧排骨',
         image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
         price: 38,
@@ -66,7 +66,7 @@ Page({
         tags: ['招牌', '热销']
       },
       {
-        id: 2,
+        id: 22,
         name: '红烧排骨',
         image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
         price: 38,
@@ -81,8 +81,13 @@ Page({
     swiperList,
     leftColumnList: [] as any[], // 左列数据
     rightColumnList: [] as any[], // 右列数据
+    backTopTheme: 'round',
+    backTopText: '顶部',
+    scrollTop: 0
   },
-
+  onPageScroll(e){
+    this.setData({ scrollTop: e.scrollTop });
+  },
   // 切换底部导航
   handleTabChange(e) {
     const { value } = e.detail;
@@ -107,7 +112,6 @@ Page({
     // 初始化时分配数据到两列
     this.distributeItems();
   },
-
   // 分配数据到左右两列
   distributeItems() {
     const left: any[] = [];
@@ -127,5 +131,10 @@ Page({
       rightColumnList: right
     });
   },
-  onChange(){}
+  onChange(){},
+  onToTop(e:any) {
+    console.log(e)
+    this.triggerEvent('to-top', e);
+  },
+
 });

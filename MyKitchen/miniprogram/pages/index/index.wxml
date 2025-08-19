@@ -1,3 +1,4 @@
+<t-back-top  scroll-top="{{scrollTop}}"   style="margin-bottom: 150rpx;"/>
 <view class="home-page">
   <!-- 原有轮播图代码保持不变 -->
   <t-swiper class="scale-card-theme" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}"
@@ -6,20 +7,22 @@
     t-class-prev-image="scale-candidate" t-class-next-image="scale-candidate" />
 
   <!-- 今日推荐 -->
+
+
   <view class="section-title">今日推荐</view>
 
   <!-- 修改为双列布局 -->
   <view class="two-column-container">
     <!-- 左列 -->
     <view class="column">
-      <view wx:for="{{leftColumnList}}" wx:key="id" class="food-item">
+      <view wx:for="{{leftColumnList}}" class="food-item"  wx:key="id">
         <view style="text-align: center;">
           <image src="{{item.image}}" mode="widthFix" class="food-image" />
         </view>
         <view style="padding: 12rpx">
           <view class="content">{{item.name}}</view>
           <view class="gap6">
-            <view wx:for="{{item.tags}}" wx:key="*this">
+            <view wx:for="{{item.tags}}"  wx:key="*this">
               <t-tag size="small" theme="default">{{item}}</t-tag>
             </view>
           </view>
@@ -37,7 +40,7 @@
 
     <!-- 右列 -->
     <view class="column">
-      <view wx:for="{{rightColumnList}}" wx:key="id" class="food-item">
+      <view wx:for="{{rightColumnList}}" class="food-item" wx:key="id"> 
         <!-- 内容与左列相同 -->
         <view style="text-align: center;">
           <image src="{{item.image}}" mode="widthFix" class="food-image" />

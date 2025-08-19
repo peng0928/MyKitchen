@@ -8,7 +8,8 @@
       <t-icon name="search" size="36rpx" color="#999"></t-icon>
       <input type="text" placeholder="搜索厨房" placeholder-class="placeholder" bindinput="handleSearchInput" />
     </view>
-    <t-button theme="primary" icon="add" shape="circle" aria-label="搜索"></t-button>
+    <t-button theme="primary" icon="add" shape="circle" aria-label="搜索"
+                bindtap="onAddTap"/>
   </view>
     <t-tabs value="{{activeTab}}" bind:change="switchTab">
     <t-tab-panel value="my" label="我的"></t-tab-panel>
@@ -39,4 +40,23 @@
       </view>
     </view>
   </view>
+
+
+   <!-- TDesign 弹窗 -->
+   <t-dialog
+    visible="{{showAddDialog}}"
+    title="新增厨房"
+    confirm-btn="创建"
+    cancel-btn="取消"
+    bindconfirm="onConfirmAdd"
+    bindcancel="onCancelAdd"
+  >
+    <t-input
+      placeholder="请输入厨房名称"
+      value="{{newKitchenName}}"
+      bindchange="onNameInput"
+      slot="content"
+    />
+  </t-dialog>
+
 </view>

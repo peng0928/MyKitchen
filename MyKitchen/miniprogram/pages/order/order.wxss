@@ -9,7 +9,7 @@ page .round-image {
 
 .side-bar-wrapper {
   display: flex;
-  height: 100vh;
+  height: 95vh;
 
   --td-grid-item-text-font-size: 24rpx;
 }
@@ -90,3 +90,21 @@ page .round-image {
   border-radius: 10px;
   background-color: white;
 }
+
+/* index.wxss */
+.no-scrollbar {
+  position: relative;
+}
+
+.no-scrollbar ::-webkit-scrollbar {
+  display: none;                /* 保险：部分 Android 内核也吃这句 */
+}
+
+/* index.wxss */
+.sticky-tabs {
+  position: sticky;
+  top: 0;          /* 距离顶部 0px 时开始吸顶 */
+  z-index: 10;    /* 确保不被其他元素盖住 */
+  background: #fff;/* 吸顶后给个背景，防止内容透出来 */
+}
+

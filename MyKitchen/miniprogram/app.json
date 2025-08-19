@@ -32,6 +32,8 @@
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-swiper": "tdesign-miniprogram/swiper/swiper",
     "t-tag": "tdesign-miniprogram/tag/tag",
-    "t-image": "tdesign-miniprogram/image/image"
+    "t-image": "tdesign-miniprogram/image/image",
+    "t-back-top": "tdesign-miniprogram/back-top/back-top",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog"
   }
 }

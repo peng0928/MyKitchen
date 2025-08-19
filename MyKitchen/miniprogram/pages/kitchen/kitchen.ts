@@ -41,6 +41,8 @@ Page({
     ],
     filteredKitchenList: [], // filtered list for search
     activeTab: 'my',
+    showAddDialog: false,          // ★ 控制弹窗显示
+    newKitchenName: '',            // ★ 弹窗输入框内容
   },
 
   // 返回上一页
@@ -54,7 +56,6 @@ Page({
     console.log(id)
     wx.navigateTo({ url: '/pages/order/order' });
   },
-    
   handleSearchInput(e:any ) {
     const keyword = e.detail.value.trim().toLowerCase();
     console.log(keyword)
@@ -68,7 +69,6 @@ Page({
     );
     this.setData({ kitchenList: filtered });
   },
-  
   goToCreateKitchen() {
     wx.navigateTo({
       url: '/pages/create-kitchen/create-kitchen'
@@ -83,5 +83,36 @@ Page({
   },
   onLoad() {
     this.setData({ kitchenList: this.data.OrikitchenList });
-  }
+  },
+   /* ★ 新增：点击“＋”按钮 */
+   onAddTap() {
+    this.setData({ showAddDialog: true });
+  },
+  /* ★ 弹窗输入双向绑定 */
+  onNameInput(e: any) {
+    this.setData({ newKitchenName: e.detail.value });
+  },
+  /* ★ 确认创建 */
+  onConfirmAdd() {
+    const name = this.data.newKitchenName.trim();
+    if (!name) return;              // 简单判空
+    const newKitchen = {
+      id: Date.now(),
+      name,
+      image: 'https://tdesign.gtimg.com/mobile/demos/example1.png',
+      memberCount: 1,
+      rating: 5
+    };
+    const updated = [newKitchen, ...this.data.OrikitchenList];
+    this.setData({
+      OrikitchenList: updated,
+      kitchenList: updated,
+      newKitchenName: '',
+      showAddDialog: false
+    });
+  },
+  /* ★ 取消/关闭弹窗 */
+  onCancelAdd() {
+    this.setData({ showAddDialog: false, newKitchenName: '' });
+  },
 })
