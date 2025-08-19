@@ -103,47 +103,41 @@ Page({
       },
     ],
     navbarHeight: 0,
+    cart:[],
+    cartCount: 0
   },
 
   onLoad() {
-    const query = wx.createSelectorQuery().in(this);
-    const { sideBarIndex } = this.data;
-    
-    query.selectAll('.title').boundingClientRect();
+    this.getCustomNavbarHeight();
+  },
+  getCustomNavbarHeight() {
+    const query = wx.createSelectorQuery();
     query.select('.custom-navbar').boundingClientRect();
-    
     query.exec((res) => {
-      console.log(res)
-      const [rects,  navbarHeight] = res;
-      this.offsetTopList = rects.map((item) => item.top - navbarHeight);
-      this.setData({ 
-        navbarHeight, 
-        scrollTop: this.offsetTopList[sideBarIndex] 
-      });
+      const { height = 0 } = res[0] || {};
+      this.setData({ navbarHeight: height });
     });
+  },
+
+  onSideBarChange(e:any) {
+    const { value } = e.detail;
+    console.log('---', value);
+    this.setData({ sideBarIndex: value, scrollTop: 0 });
   },
   handleBack() {
     wx.navigateBack()
   },
-  onSideBarChange(e: { detail: { value: number } }) {
-    const { value } = e.detail;
-    this.setData({ 
-      sideBarIndex: value, 
-      scrollTop: this.offsetTopList[value] 
-    });
-  },
-
-  onScroll(e: { detail: { scrollTop: number } }) {
+  onScroll(e:any) {
     const { scrollTop } = e.detail;
-    const threshold = 100; // 下一个标题与顶部的距离
+    const threshold = 50; // 下一个标题与顶部的距离
     const direction = scrollTop > this.lastScrollTop ? 'down' : 'up';
     this.lastScrollTop = scrollTop;
 
-    // 动态调整阈值
-    const dynamicThreshold = direction === 'down' ? threshold * 1.3 : threshold * 0.8;
+    // 动态调整阈值：向下滚动时增大阈值，向上时减小
+    const dynamicThreshold = direction === 'down' ? threshold * 1.5 : threshold * 1.5;
 
     // 使用二分查找优化查找效率
-    const findNearestIndex = (arr: number[], target: number): number => {
+    const findNearestIndex = (arr, target) => {
       let left = 0;
       let right = arr.length - 1;
       let result = 0;
@@ -167,4 +161,21 @@ Page({
   },
   onTabsChange(){},
   onTabsClick(){},
+  addToCart(e:any) {
+    const cargo = e.currentTarget.dataset.cargo;
+    const updateCart = [...this.data.cart, cargo]
+    this.setData({
+      cart: updateCart,
+      cartCount: updateCart.length
+    });
+    console.log(this.data.cart)
+
+  },
+  
+  // 去结算
+  goCheckout() {
+    wx.navigateTo({
+      url: '/pages/checkout/checkout'
+    });
+  },
 });

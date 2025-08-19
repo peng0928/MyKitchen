@@ -1,6 +1,5 @@
 page {
   background-color: var(--td-bg-color-container);
-
 }
 
 page .round-image {
@@ -10,16 +9,20 @@ page .round-image {
 .side-bar-wrapper {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 
   --td-grid-item-text-font-size: 24rpx;
 }
 
 .side-bar-wrapper .content {
   flex: 1;
+  transition: transform 0.3s ease;
 }
 
 .side-bar-wrapper .section {
   padding: 32rpx 0;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .side-bar-wrapper .title {
@@ -33,7 +36,12 @@ page .round-image {
 .side-bar-wrapper .image {
   width: 96rpx;
   height: 96rpx;
+
   position: relative;
+}
+
+.side-bar-wrapper .cell {
+  margin-right: 32rpx !important;
 }
 
 .side-bar-wrapper .image::before {
@@ -48,6 +56,10 @@ page .round-image {
   transform-origin: 0 0;
   transform: scale(0.5);
 }
+
+
+
+
 .custom-title {
   margin-left: 8px;
   font-size: 18px;
@@ -79,7 +91,8 @@ page .round-image {
   color: var(--td-text-color-primary);
 }
 .items{
-  margin-bottom: 30rpx;
+  margin-bottom: 50rpx;
+  position: relative;
 }
 
 .img-home{
@@ -108,3 +121,24 @@ page .round-image {
   background: #fff;/* 吸顶后给个背景，防止内容透出来 */
 }
 
+.add-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+/* 底部固定栏 */
+.cart-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  height: 110rpx;
+  padding: 0 40rpx;
+  background: #fff;
+  border-top: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

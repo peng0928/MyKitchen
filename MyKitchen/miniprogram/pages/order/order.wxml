@@ -4,8 +4,7 @@
     <image src="/images/logo.png" class="img-home" />
   </view>
   <t-sticky offset-top="{{0}}" z-index="{{100}}">
-    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" space-evenly="{{false}}" bind:click="onTabsClick"
-      >
+    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" space-evenly="{{false}}" bind:click="onTabsClick">
       <t-tab-panel label="点菜" value="0" />
       <t-tab-panel label="评价" value="1" />
     </t-tabs>
@@ -13,28 +12,43 @@
 
   <t-sticky offset-top="{{50}}">
 
-  <view class="side-bar-wrapper">
+    <view class="side-bar-wrapper">
       <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
         <t-side-bar-item wx:for="{{categories}}" wx:key="label" value="{{item.value || index}}" label="{{item.label}}"
           badge-props="{{item.badgeProps}}" />
       </t-side-bar>
-    <scroll-view class="content" scroll-y scroll-with-animation scroll-top="{{scrollTop}}" bind:scroll="onScroll" 
-    >
-      <view wx:for="{{categories}}" wx:key="label" class="section">
-        <view class="title">
-          {{item.title || item.label}}
-        </view>
-        <t-grid column="{{1}}" border="{{false}}">
-          <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
-            <view class="items">
-              <image src="{{cargo.image}}" mode="aspectFill" style="width: 200rpx; height: 100rpx;" />
-              <t-tag size="small" theme="primary">{{cargo.label}}</t-tag>
-            </view>
-          </block>
-        </t-grid>
+      <view class="content" style="transform: translateY(-{{sideBarIndex * 100}}%)">
+        <scroll-view wx:for="{{categories}}" wx:key="label" class="section" scroll-y scroll-top="{{scrollTop}}"
+          scroll-with-animation show-scrollbar="{{false}}">
+          <view class="title">{{item.title || item.label}}</view>
+          <t-cell-group>
+            <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
+              <view class="items">
+                <image src="{{cargo.image}}" mode="aspectFill" style="width: 200rpx; height: 100rpx;" />
+                <t-tag size="small" theme="primary">{{cargo.label}}</t-tag>
+
+                <!-- 新增：加号按钮 -->
+                <t-icon name="add" size="48rpx" color="#FA550F" class="add-btn" bind:tap="addToCart"
+                  data-cargo="{{cargo}}" />
+              </view>
+            </block>
+          </t-cell-group>
+          <view style="padding-bottom: 100rpx;"></view>
+        </scroll-view>
       </view>
-      <view style="padding-bottom: 900rpx;"></view>
-    </scroll-view>
-  </view>
+    </view>
   </t-sticky>
+</view>
+
+<!-- 底部固定栏 -->
+<view class="cart-bar" wx:if="{{cartCount}}">
+    <view style="display: flex;">
+      <t-icon name="cart" size="48rpx" />
+      <t-badge wx:if="{{cartCount}}" class="cart-badge" count="{{cartCount}}" max-count="99" />
+    </view>
+    <view>
+      <t-button theme="primary" shape="round" bind:tap="goCheckout">
+        去结算
+      </t-button>
+    </view>
 </view>
