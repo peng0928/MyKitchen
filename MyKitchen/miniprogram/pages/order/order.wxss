@@ -9,7 +9,7 @@ page .round-image {
 
 .side-bar-wrapper {
   display: flex;
-  height: 95vh;
+  height: 100vh;
 
   --td-grid-item-text-font-size: 24rpx;
 }

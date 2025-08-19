@@ -42,7 +42,7 @@ Page({
         title: '招聘拿手菜',
         icon: 'app',
         badgeProps: {},
-        items: new Array(12).fill(null).map((_, index) => ({
+        items: new Array(6).fill(null).map((_, index) => ({
           label: '标题文字',
           image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
         })),
@@ -54,7 +54,7 @@ Page({
         badgeProps: {
           dot: true,
         },
-        items: new Array(9).fill(null).map((_, index) => ({
+        items: new Array(6).fill(null).map((_, index) => ({
           label: index % 3 === 2 ? '最多六个文字' : '标题文字',
           image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
         })),
@@ -140,7 +140,7 @@ Page({
     this.lastScrollTop = scrollTop;
 
     // 动态调整阈值
-    const dynamicThreshold = direction === 'down' ? threshold * 1.5 : threshold * 0.8;
+    const dynamicThreshold = direction === 'down' ? threshold * 1.3 : threshold * 0.8;
 
     // 使用二分查找优化查找效率
     const findNearestIndex = (arr: number[], target: number): number => {
@@ -165,5 +165,6 @@ Page({
       this.setData({ sideBarIndex: newIndex });
     }
   },
-
+  onTabsChange(){},
+  onTabsClick(){},
 });
