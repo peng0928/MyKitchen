@@ -34,7 +34,7 @@ Page({
   offsetTopList: [],
   lastScrollTop: 0,
   data: {
-    sideBarIndex: 1,
+    sideBarIndex: 0,
     scrollTop: 0,
     categories: [
       {
@@ -43,8 +43,10 @@ Page({
         icon: 'app',
         badgeProps: {},
         items: new Array(6).fill(null).map((_, index) => ({
-          label: '标题文字',
+          id: index,
+          label: '招牌菜',
           image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+          cartCount: 1
         })),
       },
       {
@@ -104,7 +106,8 @@ Page({
     ],
     navbarHeight: 0,
     cart:[],
-    cartCount: 0
+    cartCount: 0,
+    cartVisible:false
   },
 
   onLoad() {
@@ -176,6 +179,18 @@ Page({
   goCheckout() {
     wx.navigateTo({
       url: '/pages/checkout/checkout'
+    });
+  },
+  cartClick(){
+    this.setData({cartVisible:true})
+  },
+  closePopup(){
+    this.setData({cartVisible:false})
+
+  },
+  onVisibleChange(e:any) {
+    this.setData({
+      cartVisible: e.detail.visible,
     });
   },
 });

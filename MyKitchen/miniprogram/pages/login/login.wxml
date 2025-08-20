@@ -2,25 +2,27 @@
   <image class="logo" src="/images/logo.png" mode="aspectFit" style="padding-bottom: 150rpx;"></image>
 
   <!-- 一键获取手机号 -->
-  <t-button block theme="primary" size="large" open-type="getPhoneNumber" bindgetphonenumber="onGetPhone"
-    loading="{{isLogging}}" wx:if="{{IsOk}}">
-    {{isLogging ? '登录中...' : '微信手机号一键登录'}}
-  </t-button>
+  <view wx:if="{{IsOk}}" style="width: 100%;">
+    <t-button block theme="primary" size="large" open-type="getPhoneNumber" bindgetphonenumber="onGetPhone"
+      loading="{{isLogging}}">
+      {{isLogging ? '登录中...' : '微信手机号一键登录'}}
+    </t-button>
+    <view style="display: flex; padding-top: 20rpx; align-items: center; text-align: center; gap: 5rpx; color: #3838d2;"
+      bindtap="switchPwd">
+      <t-icon name="swap" size="35rpx" color="#3838d2" />
+      <text>密码登录</text>
+    </view>
+  </view>
   <view wx:else style="width: 100%;">
-    <t-input placeholder="输入手机号码"  label="手机号" value="{{phoneNumber}}" type="number" tips="{{phoneError ? '手机号输入不正确' : ''}}"
-      bindchange="onPhoneInput"
-      clearable
+    <t-input placeholder="输入手机号码" label="手机号" value="{{phoneNumber}}" type="number"
+      tips="{{phoneError ? '手机号输入不正确' : ''}}" bindchange="onPhoneInput" clearable
       style="border: 1rpx solid black; border-radius: 15rpx;">
     </t-input>
-    <t-input placeholder="输入密码"  label="密码" value="{{phoneNumber}}"  type="password"
-    suffixIcon="{{ { name: pwdIcon, ariaLabel: '密码' } }}"
-      bindchange="onPhoneInput"
-      clearable
-      style="border: 1rpx solid black; border-radius: 15rpx; margin-top: 25rpx;"
-      bindclick="inputTrigger"
-      >
+    <t-input placeholder="输入密码" label="密码" value="{{password}}" type="password"
+      suffixIcon="{{ { name: pwdIcon, ariaLabel: '密码' } }}" bindchange="pwdInput" tips="{{pwdError ? '请输入密码' : ''}}"
+      style="border: 1rpx solid black; border-radius: 15rpx; margin-top: 25rpx;" bindclick="inputTrigger">
     </t-input>
-    <t-button block theme="primary" size="large" style="width: 100%; margin-top: 25rpx;">
+    <t-button block theme="primary" size="large" style="width: 100%; margin-top: 25rpx;" bindtap="login">
       登录
     </t-button>
   </view>

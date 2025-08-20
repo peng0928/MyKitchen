@@ -28,8 +28,17 @@
                 <t-tag size="small" theme="primary">{{cargo.label}}</t-tag>
 
                 <!-- 新增：加号按钮 -->
-                <t-icon name="add" size="48rpx" color="#FA550F" class="add-btn" bind:tap="addToCart"
-                  data-cargo="{{cargo}}" />
+                <view class="cartBtn">
+                  <view wx:if="{{cargo.cartCount}}">
+                    <t-icon name="minus" size="35rpx" color="black" class="minBtn"  bind:tap="addToCart"
+                      data-cargo="{{cargo}}" />
+                  </view>
+                  <text wx:if="{{cargo.cartCount}}">{{cargo.cartCount}}</text>
+                  <view>
+                    <t-icon name="add" size="35rpx" color="black" class="addBtn" bind:tap="addToCart"
+                      data-cargo="{{cargo}}" />
+                  </view>
+                </view>
               </view>
             </block>
           </t-cell-group>
@@ -42,13 +51,24 @@
 
 <!-- 底部固定栏 -->
 <view class="cart-bar" wx:if="{{cartCount}}">
-    <view style="display: flex;">
-      <t-icon name="cart" size="48rpx" />
-      <t-badge wx:if="{{cartCount}}" class="cart-badge" count="{{cartCount}}" max-count="99" />
-    </view>
-    <view>
-      <t-button theme="primary" shape="round" bind:tap="goCheckout">
-        去结算
-      </t-button>
-    </view>
+  <view style="display: flex;">
+    <t-icon name="cart" size="55rpx" bind:click="cartClick" />
+    <t-badge wx:if="{{cartCount}}" class="cart-badge" count="{{cartCount}}" max-count="99" />
+  </view>
+  <view>
+    <t-button shape="round" bind:tap="goCheckout" style="background-color: yellow; color: black;">
+      去结算
+    </t-button>
+  </view>
 </view>
+
+<!-- 底部弹出 -->
+<t-popup visible="{{cartVisible}}" placement="bottom" close-btn="{{true}}" style="height: 700rpx;"
+  bind:visible-change="onVisibleChange">
+  <view>1111</view>
+  <view>
+    <t-button shape="round" bind:tap="closePopup" style="background-color: yellow; color: black;">
+      去结算
+    </t-button>
+  </view>
+</t-popup>

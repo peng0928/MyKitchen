@@ -121,10 +121,25 @@ page .round-image {
   background: #fff;/* 吸顶后给个背景，防止内容透出来 */
 }
 
-.add-btn {
+.cartBtn {
   position: absolute;
-  right: 20rpx;
-  top: 20rpx;
+  right: 50rpx;
+  top: 60rpx;
+  border-radius: 15px; 
+  display: flex;
+  gap: 20rpx;
+  align-items: center;
+  text-align: center;
+}
+.addBtn{
+  background-color: darkorange;
+  border-radius: 15px; 
+  padding: 5rpx;
+}
+.minBtn{
+  border-radius: 15px; 
+  padding: 5rpx;
+  border: 1rpx solid darkgreen;
 }
 
 /* 底部固定栏 */
@@ -133,12 +148,15 @@ page .round-image {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999;
-  height: 110rpx;
-  padding: 0 40rpx;
+  z-index: 11501;
+  height: 180rpx;
+  padding: 0 60rpx;
   background: #fff;
   border-top: 1rpx solid #eee;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+
+
