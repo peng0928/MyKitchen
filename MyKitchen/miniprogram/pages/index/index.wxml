@@ -13,7 +13,7 @@
       <view class="column">
         <view wx:for="{{leftColumnList}}" class="food-item" wx:key="id">
           <view style="text-align: center;">
-            <image src="{{item.image}}" mode="widthFix" class="food-image" bind:tap="toDetail"/>
+            <image src="{{item.image}}" mode="widthFix" class="food-image" data-item="{{item}}" bind:tap="toDetail" />
           </view>
           <view style="padding: 12rpx">
             <view class="content">{{item.name}}</view>

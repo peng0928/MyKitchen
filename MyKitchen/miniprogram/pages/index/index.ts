@@ -156,7 +156,9 @@ Page({
     console.log(e);
     this.triggerEvent("to-top", e);
   },
-  toDetail() {
-    wx.navigateTo({ url: "/pages/menu-detail/menu-detail" });
+  toDetail(e) {
+    console.log(e);
+    const title = e.currentTarget.dataset.item.name;
+    wx.navigateTo({ url: "/pages/menu-detail/menu-detail?title=" + title });
   },
 });

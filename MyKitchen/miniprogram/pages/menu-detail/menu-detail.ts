@@ -11,6 +11,11 @@ Page({
   },
 
   async onLoad(query) {
+    const title = query.title || "默认标题";
+
+    // 2. 设置导航栏标题
+    wx.setNavigationBarTitle({ title });
+
     const id = Number(query.id);
     await this.fetchDetail(id);
   },
