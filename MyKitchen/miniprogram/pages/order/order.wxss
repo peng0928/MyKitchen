@@ -45,7 +45,7 @@ page .round-image {
 }
 
 .side-bar-wrapper .image::before {
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 0;
   left: 0;
@@ -56,9 +56,6 @@ page .round-image {
   transform-origin: 0 0;
   transform: scale(0.5);
 }
-
-
-
 
 .custom-title {
   margin-left: 8px;
@@ -90,12 +87,12 @@ page .round-image {
   font-weight: 600;
   color: var(--td-text-color-primary);
 }
-.items{
+.items {
   margin-bottom: 50rpx;
   position: relative;
 }
 
-.img-home{
+.img-home {
   display: block;
   margin: 0 auto;
   max-height: 375rpx;
@@ -110,34 +107,34 @@ page .round-image {
 }
 
 .no-scrollbar ::-webkit-scrollbar {
-  display: none;                /* 保险：部分 Android 内核也吃这句 */
+  display: none; /* 保险：部分 Android 内核也吃这句 */
 }
 
 /* index.wxss */
 .sticky-tabs {
   position: sticky;
-  top: 0;          /* 距离顶部 0px 时开始吸顶 */
-  z-index: 10;    /* 确保不被其他元素盖住 */
-  background: #fff;/* 吸顶后给个背景，防止内容透出来 */
+  top: 0; /* 距离顶部 0px 时开始吸顶 */
+  z-index: 10; /* 确保不被其他元素盖住 */
+  background: #fff; /* 吸顶后给个背景，防止内容透出来 */
 }
 
 .cartBtn {
   position: absolute;
   right: 50rpx;
   top: 60rpx;
-  border-radius: 15px; 
+  border-radius: 15px;
   display: flex;
   gap: 20rpx;
   align-items: center;
   text-align: center;
 }
-.addBtn{
-  background-color: darkorange;
-  border-radius: 15px; 
+.addBtn {
+  background-color: green;
+  border-radius: 15px;
   padding: 5rpx;
 }
-.minBtn{
-  border-radius: 15px; 
+.minBtn {
+  border-radius: 15px;
   padding: 5rpx;
   border: 1rpx solid darkgreen;
 }
@@ -156,7 +153,6 @@ page .round-image {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #161518;
 }
-
-
-
+/* 动画 */

@@ -4,7 +4,7 @@ Page({
   data: {
     isLogging: false,
     agree: false,
-    IsOk: true,
+    IsOk: false,
     phoneError: false,
     pwdError: false,
     phoneNumber: "",

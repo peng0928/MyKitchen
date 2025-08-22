@@ -1,77 +1,73 @@
-<t-back-top  scroll-top="{{scrollTop}}"   style="margin-bottom: 150rpx;"/>
-<view class="home-page">
-  <!-- 原有轮播图代码保持不变 -->
-  <t-swiper class="scale-card-theme" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}"
-    interval="{{interval}}" bindchange="onChange" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}"
-    image-props="{{ { shape: 'round' } }}" previousMargin="34px" nextMargin="34px" t-class-nav="card-theme-nav"
-    t-class-prev-image="scale-candidate" t-class-next-image="scale-candidate" />
+<t-back-top scroll-top="{{scrollTop}}" style="margin-bottom: 150rpx;" />
+<view class="contain">
+  <view>
+    <!-- 原有轮播图代码保持不变 -->
+    <t-swiper class="scale-card-theme" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" bindchange="onChange" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}" image-props="{{ { shape: 'round' } }}" previousMargin="34px" nextMargin="34px" t-class-nav="card-theme-nav" t-class-prev-image="scale-candidate" t-class-next-image="scale-candidate" style="padding-top: 30rpx;" />
 
-  <!-- 今日推荐 -->
+    <!-- 今日推荐 -->
+    <view class="section-title">今日推荐</view>
 
-
-  <view class="section-title">今日推荐</view>
-
-  <!-- 修改为双列布局 -->
-  <view class="two-column-container">
-    <!-- 左列 -->
-    <view class="column">
-      <view wx:for="{{leftColumnList}}" class="food-item"  wx:key="id">
-        <view style="text-align: center;">
-          <image src="{{item.image}}" mode="widthFix" class="food-image" />
-        </view>
-        <view style="padding: 12rpx">
-          <view class="content">{{item.name}}</view>
-          <view class="gap6">
-            <view wx:for="{{item.tags}}"  wx:key="*this">
-              <t-tag size="small" theme="default">{{item}}</t-tag>
+    <!-- 修改为双列布局 -->
+    <view class="two-column-container" bindscroll="onPageScroll">
+      <!-- 左列 -->
+      <view class="column">
+        <view wx:for="{{leftColumnList}}" class="food-item" wx:key="id">
+          <view style="text-align: center;">
+            <image src="{{item.image}}" mode="widthFix" class="food-image" bind:tap="toDetail"/>
+          </view>
+          <view style="padding: 12rpx">
+            <view class="content">{{item.name}}</view>
+            <view class="gap6">
+              <view wx:for="{{item.tags}}" wx:key="*this">
+                <t-tag size="small" theme="default">{{item}}</t-tag>
+              </view>
+            </view>
+            <view class="food-footer">
+              <view class="user">
+                <t-icon name="user" size="30rpx" />123
+              </view>
+              <view class="heart">
+                <t-icon name="heart" size="28rpx" />126
+              </view>
             </view>
           </view>
-          <view class="food-footer">
-            <view class="user">
-              <t-icon name="user" size="30rpx" />123
+        </view>
+      </view>
+
+      <!-- 右列 -->
+      <view class="column">
+        <view wx:for="{{rightColumnList}}" class="food-item" wx:key="id">
+          <!-- 内容与左列相同 -->
+          <view style="text-align: center;">
+            <image src="{{item.image}}" mode="widthFix" class="food-image" />
+          </view>
+          <view style="padding: 12rpx">
+            <view class="content">{{item.name}}</view>
+            <view class="gap6">
+              <view wx:for="{{item.tags}}" wx:key="*this">
+                <t-tag size="small" theme="default">{{item}}</t-tag>
+              </view>
             </view>
-            <view class="heart">
-              <t-icon name="heart" size="28rpx" />126
+            <view class="food-footer">
+              <view class="user">
+                <t-icon name="user" size="30rpx" />123
+              </view>
+              <view class="heart">
+                <t-icon name="heart" size="28rpx" />135
+              </view>
             </view>
           </view>
         </view>
       </view>
     </view>
 
-    <!-- 右列 -->
-    <view class="column">
-      <view wx:for="{{rightColumnList}}" class="food-item" wx:key="id"> 
-        <!-- 内容与左列相同 -->
-        <view style="text-align: center;">
-          <image src="{{item.image}}" mode="widthFix" class="food-image" />
-        </view>
-        <view style="padding: 12rpx">
-          <view class="content">{{item.name}}</view>
-          <view class="gap6">
-            <view wx:for="{{item.tags}}" wx:key="*this">
-              <t-tag size="small" theme="default">{{item}}</t-tag>
-            </view>
-          </view>
-          <view class="food-footer">
-            <view class="user">
-              <t-icon name="user" size="30rpx" />123
-            </view>
-            <view class="heart">
-              <t-icon name="heart" size="28rpx" />135
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
+    <!-- 底部导航保持不变 -->
+    <t-tab-bar t-class="t-tab-bar" value="{{currentTab}}" bindchange="handleTabChange" shape="round" theme="tag" split="{{false}}">
+      <t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
+      <t-tab-bar-item value="order" icon="shop">订单</t-tab-bar-item>
+      <t-tab-bar-item value="kitchen" icon="houses">厨房</t-tab-bar-item>
+      <t-tab-bar-item value="menu" icon="menu">菜单</t-tab-bar-item>
+      <t-tab-bar-item value="mine" icon="user">我的</t-tab-bar-item>
+    </t-tab-bar>
   </view>
-
-  <!-- 底部导航保持不变 -->
-  <t-tab-bar t-class="t-tab-bar" value="{{currentTab}}" bindchange="handleTabChange" shape="round" theme="tag"
-    split="{{false}}">
-    <t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
-    <t-tab-bar-item value="menu" icon="menu">菜单</t-tab-bar-item>
-    <t-tab-bar-item value="kitchen" icon="houses">厨房</t-tab-bar-item>
-    <t-tab-bar-item value="order" icon="shop">订单</t-tab-bar-item>
-    <t-tab-bar-item value="mine" icon="user">我的</t-tab-bar-item>
-  </t-tab-bar>
 </view>

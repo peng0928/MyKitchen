@@ -14,12 +14,10 @@
 
     <view class="side-bar-wrapper">
       <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
-        <t-side-bar-item wx:for="{{categories}}" wx:key="label" value="{{item.value || index}}" label="{{item.label}}"
-          badge-props="{{item.badgeProps}}" />
+        <t-side-bar-item wx:for="{{categories}}" wx:key="label" value="{{item.value || index}}" label="{{item.label}}" badge-props="{{item.badgeProps}}" />
       </t-side-bar>
       <view class="content" style="transform: translateY(-{{sideBarIndex * 100}}%)">
-        <scroll-view wx:for="{{categories}}" wx:key="label" class="section" scroll-y scroll-top="{{scrollTop}}"
-          scroll-with-animation show-scrollbar="{{false}}">
+        <scroll-view wx:for="{{categories}}" wx:key="label" class="section" scroll-y scroll-top="{{scrollTop}}" scroll-with-animation show-scrollbar="{{false}}">
           <view class="title">{{item.title || item.label}}</view>
           <t-cell-group>
             <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
@@ -30,19 +28,17 @@
                 <!-- 新增：加号按钮 -->
                 <view class="cartBtn">
                   <view wx:if="{{cargo.cartCount}}">
-                    <t-icon name="minus" size="35rpx" color="black" class="minBtn"  bind:tap="addToCart"
-                      data-cargo="{{cargo}}" />
+                    <t-icon name="minus" size="35rpx" color="black" class="minBtn" bind:tap="removeFromCart" data-cargo="{{cargo}}" />
                   </view>
-                  <text wx:if="{{cargo.cartCount}}">{{cargo.cartCount}}</text>
+                  <text wx:if="{{cargo.cartCount}}" style="width: 35rpx;">{{cargo.cartCount}}</text>
                   <view>
-                    <t-icon name="add" size="35rpx" color="black" class="addBtn" bind:tap="addToCart"
-                      data-cargo="{{cargo}}" />
+                    <t-icon name="add" size="35rpx" color="white" class="addBtn" bind:tap="addToCart" data-cargo="{{cargo}}" />
                   </view>
                 </view>
               </view>
             </block>
           </t-cell-group>
-          <view style="padding-bottom: 100rpx;"></view>
+          <view style="padding-bottom: 220rpx;"></view>
         </scroll-view>
       </view>
     </view>
@@ -51,7 +47,7 @@
 
 <!-- 底部固定栏 -->
 <view class="cart-bar" wx:if="{{cartCount}}">
-  <view style="display: flex;">
+  <view style="display: flex; background-color: white; padding: 30rpx; border-radius: 88rpx;">
     <t-icon name="cart" size="55rpx" bind:click="cartClick" />
     <t-badge wx:if="{{cartCount}}" class="cart-badge" count="{{cartCount}}" max-count="99" />
   </view>
@@ -63,9 +59,7 @@
 </view>
 
 <!-- 底部弹出 -->
-<t-popup visible="{{cartVisible}}" placement="bottom" close-btn="{{true}}" style="height: 700rpx;"
-  bind:visible-change="onVisibleChange">
-  <view>1111</view>
+<t-popup visible="{{cartVisible}}" placement="bottom" close-btn="{{true}}" style="height: 700rpx;" bind:visible-change="onVisibleChange">
   <view>
     <t-button shape="round" bind:tap="closePopup" style="background-color: yellow; color: black;">
       去结算

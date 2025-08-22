@@ -1,13 +1,20 @@
 <!-- 顶部卡片 -->
 <view class="header-card">
   <!-- 左侧头像 -->
-  <t-avatar t-class="avatar" size="120rpx" image="{{avatarUrl}}" default-avatar="user" bindtap="onAvatarTap" />
+  <view class="left">
+    <t-avatar t-class="avatar" size="120rpx" image="{{avatarUrl}}" default-avatar="user" bindtap="onAvatarTap" />
+    <view style="padding-top: 10rpx; display: flex; align-items: center; text-align: center; gap: 10rpx;" open-type="chooseAvatar" bindtap="getUserProfile" bind:chooseavatar="onChooseAvatar">
+      <t-button open-type="chooseAvatar" size="extra-small" icon="refresh" variant="text" bind:chooseavatar="onChooseAvatar" style="color: wheat;">
+        同步头像
+      </t-button>
+    </view>
+  </view>
 
   <!-- 右侧信息 -->
   <view class="info">
-    <view class="name">{{userInfo.nickName}}</view>
-    <view class="code">饭搭子号：{{userInfo.code}}</view>
-    <view class="bio">{{userInfo.bio || '这个人很懒，什么都没写~'}}</view>
+    <view class="name">{{userInfo.name}}</view>
+    <view class="code">饭搭子号：{{userInfo.fid}}</view>
+    <view class="bio">{{userInfo.desc || '这个人很懒，什么都没写~'}}</view>
   </view>
 </view>
 
@@ -41,9 +48,9 @@
 </view>
 
 <!-- 头像大图预览 & 修改 -->
-<t-overlay visible="{{overlayVisible}}" bind:click="closeOverlay" />
-<t-image-viewer wx:if="{{overlayVisible}}" images="{{[avatarUrl || '/assets/default-avatar.png']}}"
-  visible="{{overlayVisible}}" closeBtn bind:close="closeOverlay" />
+<t-image-viewer wx:if="{{overlayVisible}}" images="{{[avatarUrl || '/assets/default-avatar.png']}}" visible="{{overlayVisible}}" closeBtn bind:close="closeOverlay" />
 <view class="avatar-actions" wx:if="{{overlayVisible}}">
   <t-button theme="primary" bindtap="chooseAvatar">更换头像</t-button>
 </view>
+
+<t-message id="t-message" />

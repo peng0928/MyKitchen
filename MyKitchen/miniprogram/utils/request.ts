@@ -31,7 +31,7 @@ export function request<T = any>(options: RequestOptions): Promise<T> {
           resolve(res.data as T);
         } else if (res.statusCode === 401) {
           wx.removeStorageSync("token");
-          wx.navigateTo({ url: "/pages/login/index" });
+          wx.navigateTo({ url: "/pages/login/login" });
           reject({ detail: "登录过期" });
         } else {
           reject(res.data || { detail: "请求失败" });

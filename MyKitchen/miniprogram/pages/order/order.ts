@@ -38,76 +38,93 @@ Page({
     scrollTop: 0,
     categories: [
       {
-        label: '招牌菜',
-        title: '招聘拿手菜',
-        icon: 'app',
+        label: "招牌菜",
+        title: "招聘拿手菜",
+        icon: "app",
         badgeProps: {},
         items: new Array(6).fill(null).map((_, index) => ({
           id: index,
-          label: '招牌菜',
-          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
-          cartCount: 1
+          inx: 0,
+          label: "招牌菜",
+          image: "https://tdesign.gtimg.com/mobile/demos/example2.png",
+          cartCount: 0,
         })),
       },
       {
-        label: '特色荤菜',
-        title: '美味荤菜',
-        icon: 'app',
+        label: "特色荤菜",
+        title: "美味荤菜",
+        icon: "app",
         badgeProps: {
           dot: true,
         },
         items: new Array(6).fill(null).map((_, index) => ({
-          label: index % 3 === 2 ? '最多六个文字' : '标题文字',
-          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+          id: index,
+
+          inx: 1,
+          label: index % 3 === 2 ? "最多六个文字" : "标题文字",
+          image: "https://tdesign.gtimg.com/mobile/demos/example2.png",
+          cartCount: 0,
         })),
       },
       {
-        label: '绿叶菜',
-        title: '清香绿叶菜',
-        icon: 'app',
+        label: "绿叶菜",
+        title: "清香绿叶菜",
+        icon: "app",
         badgeProps: {},
         items: new Array(9).fill(null).map((_, index) => ({
-          label: index % 3 === 2 ? '最多六个文字' : '标题文字',
-          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+          id: index,
+          inx: 2,
+          label: index % 3 === 2 ? "最多六个文字" : "标题文字",
+          image: "https://tdesign.gtimg.com/mobile/demos/example2.png",
+          cartCount: 0,
         })),
       },
       {
-        label: '海鲜🦞',
-        title: '新鲜美味海鲜',
-        icon: 'app',
+        label: "海鲜🦞",
+        title: "新鲜美味海鲜",
+        icon: "app",
         badgeProps: {
           count: 6,
         },
         items: new Array(6).fill(null).map((_, index) => ({
-          label: index % 3 === 2 ? '最多六个文字' : '标题文字',
-          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+          id: index,
+          inx: 3,
+          label: index % 3 === 2 ? "最多六个文字" : "标题文字",
+          image: "https://tdesign.gtimg.com/mobile/demos/example2.png",
+          cartCount: 0,
         })),
       },
       {
-        label: '饮料',
-        title: '饮料🥤',
-        icon: 'app',
+        label: "饮料",
+        title: "饮料🥤",
+        icon: "app",
         badgeProps: {},
         items: new Array(6).fill(null).map((_, index) => ({
-          label: '标题文字',
-          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+          label: "标题文字",
+          id: index,
+          inx: 4,
+          image: "https://tdesign.gtimg.com/mobile/demos/example2.png",
+          cartCount: 0,
         })),
       },
       {
-        label: '主食',
-        title: '主食🍚',
-        icon: 'app',
+        label: "主食",
+        title: "主食🍚",
+        icon: "app",
         badgeProps: {},
         items: new Array(3).fill(null).map((_, index) => ({
-          label: '标题文字',
-          image: 'https://tdesign.gtimg.com/mobile/demos/example2.png',
+          label: "标题文字",
+          id: index,
+          inx: 5,
+          image: "https://tdesign.gtimg.com/mobile/demos/example2.png",
+          cartCount: 0,
         })),
       },
     ],
     navbarHeight: 0,
-    cart:[],
+    cart: [],
     cartCount: 0,
-    cartVisible:false
+    cartVisible: false,
   },
 
   onLoad() {
@@ -115,29 +132,30 @@ Page({
   },
   getCustomNavbarHeight() {
     const query = wx.createSelectorQuery();
-    query.select('.custom-navbar').boundingClientRect();
+    query.select(".custom-navbar").boundingClientRect();
     query.exec((res) => {
       const { height = 0 } = res[0] || {};
       this.setData({ navbarHeight: height });
     });
   },
 
-  onSideBarChange(e:any) {
+  onSideBarChange(e: any) {
     const { value } = e.detail;
-    console.log('---', value);
+    console.log("---", value);
     this.setData({ sideBarIndex: value, scrollTop: 0 });
   },
   handleBack() {
-    wx.navigateBack()
+    wx.navigateBack();
   },
-  onScroll(e:any) {
+  onScroll(e: any) {
     const { scrollTop } = e.detail;
     const threshold = 50; // 下一个标题与顶部的距离
-    const direction = scrollTop > this.lastScrollTop ? 'down' : 'up';
+    const direction = scrollTop > this.lastScrollTop ? "down" : "up";
     this.lastScrollTop = scrollTop;
 
     // 动态调整阈值：向下滚动时增大阈值，向上时减小
-    const dynamicThreshold = direction === 'down' ? threshold * 1.5 : threshold * 1.5;
+    const dynamicThreshold =
+      direction === "down" ? threshold * 1.5 : threshold * 1.5;
 
     // 使用二分查找优化查找效率
     const findNearestIndex = (arr, target) => {
@@ -162,33 +180,54 @@ Page({
       this.setData({ sideBarIndex: newIndex });
     }
   },
-  onTabsChange(){},
-  onTabsClick(){},
-  addToCart(e:any) {
+  onTabsChange() {},
+  onTabsClick() {},
+  addToCart(e: any) {
     const cargo = e.currentTarget.dataset.cargo;
-    const updateCart = [...this.data.cart, cargo]
+    console.log(cargo);
+    const categories = this.data.categories[cargo.inx];
+    const item = categories.items.find((v) => v.id === cargo.id);
+    if (item) {
+      item.cartCount += 1;
+    }
+    this.data.categories[cargo.inx] = categories;
+    const updateCart = [...this.data.cart, cargo];
     this.setData({
       cart: updateCart,
-      cartCount: updateCart.length
+      cartCount: updateCart.length,
+      categories: this.data.categories,
     });
-    console.log(this.data.cart)
-
   },
-  
+  removeFromCart(e: any) {
+    const cargo = e.currentTarget.dataset.cargo;
+    const categories = [...this.data.categories]; // 浅拷贝，触发 setData
+    const items = categories[cargo.inx].items;
+    const idx = items.findIndex((v) => v.id === cargo.id);
+
+    if (idx > -1) {
+      const item = items[idx];
+      if (item.cartCount > 1) {
+        item.cartCount -= 1; // 减 1
+      } else {
+        item.cartCount -= 1; // 减 1
+      }
+    }
+
+    this.setData({ categories });
+  },
   // 去结算
   goCheckout() {
     wx.navigateTo({
-      url: '/pages/checkout/checkout'
+      url: "/pages/checkout/checkout",
     });
   },
-  cartClick(){
-    this.setData({cartVisible:true})
+  cartClick() {
+    this.setData({ cartVisible: true });
   },
-  closePopup(){
-    this.setData({cartVisible:false})
-
+  closePopup() {
+    this.setData({ cartVisible: false });
   },
-  onVisibleChange(e:any) {
+  onVisibleChange(e: any) {
     this.setData({
       cartVisible: e.detail.visible,
     });

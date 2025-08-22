@@ -1,0 +1,63 @@
+<!-- 顶部 Tab -->
+<t-tabs defaultValue="my" bind:change="onTabChange">
+  <t-tab-panel label="我的菜单" value="my" />
+  <t-tab-panel label="喜欢的" value="liked" />
+  <t-tab-panel label="收藏" value="fav" />
+</t-tabs>
+
+<!-- 列表区域 -->
+<view class="list">
+  <block wx:for="{{list}}" wx:key="id">
+    <t-card class="menu-card" title="{{item.title}}" bordered bindtap="goDetail" data-id="{{item.id}}">
+      <!-- 自定义封面 -->
+      <view style="height: 80rpx; width: 80rpx; background-color: rgb(162, 162, 218); align-items:center; text-align: center; border-radius: 50%">
+        <view style="text-align: center; align-items: center; padding-top: 18rpx;">粤</view>
+      </view>
+      <t-image src="/images/logo.png" mode="aspectFill" width="72" height="72" />
+      <!-- 自定义内容 -->
+      <view slot="footer" class="footer">
+        <view class="meta">
+          <t-tag theme="primary" variant="light" size="small">{{item.date}}</t-tag>
+          <t-tag wx:if="{{item.isPublic}}" theme="success" variant="light" size="small" style="margin-left:16rpx;">公开</t-tag>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="actions">
+          <!-- 仅在“我的”Tab 显示编辑/删除 -->
+          <block wx:if="{{activeTab==='my'}}">
+            <t-button theme="primary" variant="text" size="small" bindtap="editMenu" data-item="{{item}}">
+              <t-icon name="edit" />
+            </t-button>
+            <t-button theme="danger" variant="text" size="small" bindtap="deleteMenu" data-id="{{item.id}}">
+              <t-icon name="delete" />
+            </t-button>
+          </block>
+
+          <!-- 收藏/取消收藏 -->
+          <t-button wx:else theme="{{item.collected ? 'warning' : 'default'}}" variant="text" size="small" bindtap="toggleCollect" data-id="{{item.id}}">
+            <t-icon name="{{item.collected ? 'star-filled' : 'star'}}" />
+          </t-button>
+
+          <!-- 分享 -->
+          <button class="share-btn" open-type="share" data-id="{{item.id}}">
+            <t-icon name="share" />
+          </button>
+        </view>
+      </view>
+    </t-card>
+  </block>
+</view>
+
+<!-- 空状态 -->
+<view wx:if="{{!list.length}}" class="empty">
+  <image src="/assets/empty.png" mode="aspectFit" class="empty-img" />
+  <text class="empty-text">暂无菜单，快去创建吧~</text>
+</view>
+
+<!-- 浮动新建 -->
+<t-fab icon="add" bindtap="addMenu" />
+
+<!-- 删除确认 -->
+<t-dialog visible="{{showDelete}}" title="确认删除？" content="删除后无法恢复" confirm-btn="删除" cancel-btn="取消" bind:confirm="doDelete" bind:close="closeDelete" />
+
+<t-toast id="t-toast" />

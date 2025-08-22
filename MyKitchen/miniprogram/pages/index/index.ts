@@ -1,4 +1,5 @@
 // pages/home/home.js
+import { auth } from "../../utils/api";
 const imageCdn = "https://tdesign.gtimg.com/mobile/demos";
 const swiperList = [
   `${imageCdn}/swiper1.png`,
@@ -93,19 +94,27 @@ Page({
     backTopTheme: "round",
     backTopText: "顶部",
     scrollTop: 0,
+    access_token: "",
   },
   onPageScroll(e) {
     this.setData({ scrollTop: e.scrollTop });
   },
   // 切换底部导航
-  handleTabChange(e) {
+  async handleTabChange(e) {
     const { value } = e.detail;
-    console.log(value);
-
     this.setData({ currentTab: value });
-
+    if (!this.data.access_token) {
+      wx.navigateTo({ url: "/pages/login/login" });
+    } else {
+      const response = await auth();
+      if (!response.username) {
+        return;
+      }
+    }
     if (value === "order") {
       wx.navigateTo({ url: "/pages/order/order" });
+    } else if (value === "menu") {
+      wx.navigateTo({ url: "/pages/meun-list/menu" });
     } else if (value === "mine") {
       // wx.navigateTo({ url: '/pages/login/login' });
       wx.navigateTo({ url: "/pages/user-center/user-center" });
@@ -120,6 +129,8 @@ Page({
   onLoad() {
     // 初始化时分配数据到两列
     this.distributeItems();
+    const access_token = wx.getStorageSync("token");
+    this.setData({ access_token: access_token });
   },
   // 分配数据到左右两列
   distributeItems() {
@@ -144,5 +155,8 @@ Page({
   onToTop(e: any) {
     console.log(e);
     this.triggerEvent("to-top", e);
+  },
+  toDetail() {
+    wx.navigateTo({ url: "/pages/menu-detail/menu-detail" });
   },
 });

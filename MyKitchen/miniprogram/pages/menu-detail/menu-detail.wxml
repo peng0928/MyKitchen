@@ -1,0 +1,74 @@
+<view class="page" wx:if="{{detail}}">
+  <!-- 封面 -->
+  <view style="text-align: center;">
+    <t-image src="{{detail.cover}}" shape="round" style="width: 95%; height: 360rpx;" mode="aspectFill" />
+  </view>
+
+  <!-- 标题 + 收藏 -->
+  <view class="header">
+    <view class="title">{{detail.title}}</view>
+    <view class="meta">
+      <text class="author">by {{detail.author}}</text>
+      <text class="date">{{detail.date}}</text>
+    </view>
+    <t-button class="collect-btn" theme="{{collected ? 'warning' : 'default'}}" variant="outline" bindtap="toggleCollect">
+      <t-icon name="{{collected ? 'star-filled' : 'star'}}" size="48rpx" />
+      <text style="margin-left:8rpx;">{{collected ? '已收藏' : '收藏'}}</text>
+    </t-button>
+  </view>
+
+  <!-- 标签页 -->
+  <t-tabs value="{{activeTab}}" bind:change="onTabChange" sticky>
+    <t-tab-panel label="菜品介绍" value="intro" />
+    <t-tab-panel label="原料" value="ingredients" />
+    <t-tab-panel label="制作步骤" value="steps" />
+    <t-tab-panel label="小贴士" value="tips" />
+  </t-tabs>
+
+  <!-- 内容区 -->
+  <view class="content">
+    <!-- 1️⃣ 菜品介绍 -->
+    <view wx:if="{{activeTab === 'intro'}}" class="panel">
+      <text class="intro-text">{{detail.intro}}</text>
+    </view>
+
+    <!-- 2️⃣ 原料 -->
+    <view wx:if="{{activeTab === 'ingredients'}}" class="panel">
+      <view class="ing-row" wx:for="{{detail.ingredients}}" wx:key="name">
+        <t-tag theme="primary" variant="light">{{item.name}}</t-tag>
+        <text class="amount">{{item.amount}}</text>
+      </view>
+    </view>
+
+    <!-- 3️⃣ 制作步骤 -->
+    <view wx:if="{{activeTab === 'steps'}}" class="panel">
+      <view class="step-wrapper">
+        <block wx:for="{{detail.steps}}" wx:key="index">
+          <!-- 吸顶标题 -->
+          <t-sticky offsetTop="{{0}}">
+            <view class="step-header {{index === activeStickyIndex ? 'active' : ''}}">
+              <view class="step-ball">{{index + 1}}</view>
+              <text class="step-title">{{item.title}}</text>
+            </view>
+          </t-sticky>
+
+          <!-- 内容卡片 -->
+          <view class="step-section" id="step-{{index}}">
+            <view class="step-card">
+              <text class="step-desc">{{item.desc}}</text>
+              <t-image wx:if="{{item.image}}" class="step-img" src="{{item.image}}" mode="aspectFill" />
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 4️⃣ 小贴士 -->
+    <view wx:if="{{activeTab === 'tips'}}" class="panel">
+      <view wx:for="{{detail.tips}}" wx:key="index" class="tip-item">
+        <t-icon name="light" size="32rpx" color="#ff6a88" />
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+</view>

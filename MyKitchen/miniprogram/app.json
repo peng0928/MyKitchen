@@ -7,7 +7,9 @@
     "pages/admin/add-dish/add-dish",
     "pages/kitchen/kitchen",
     "pages/login/login",
-    "pages/user-center/user-center"
+    "pages/user-center/user-center",
+    "pages/meun-list/menu",
+    "pages/menu-detail/menu-detail"
   ],
   "window": {
     "navigationBarTitleText": "饭搭子",
@@ -43,6 +45,11 @@
     "t-popup": "tdesign-miniprogram/popup/popup",
     "t-avatar": "tdesign-miniprogram/avatar/avatar",
     "t-overlay": "tdesign-miniprogram/overlay/overlay",
-    "t-image-viewer": "tdesign-miniprogram/image-viewer/image-viewer"
+    "t-image-viewer": "tdesign-miniprogram/image-viewer/image-viewer",
+    "t-skeleton": "tdesign-miniprogram/skeleton/skeleton",
+    "t-steps": "tdesign-miniprogram/steps/steps",
+    "t-step-item": "tdesign-miniprogram/step-item/step-item",
+    "t-divider": "tdesign-miniprogram/divider/divider",
+    "t-toast": "tdesign-miniprogram/toast/toast"
   }
 }

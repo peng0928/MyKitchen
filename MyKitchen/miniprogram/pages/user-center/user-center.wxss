@@ -9,15 +9,20 @@ page {
   background: linear-gradient(135deg, #1972c6 0%, #ff6a88 100%);
   border-radius: 0 0 48rpx 48rpx;
   color: #fff;
+  justify-content: space-between;
 }
-
+.left{
+  align-items: center;
+  text-align: center;
+}
 .avatar {
   flex-shrink: 0;
+
 }
 
 .info {
-  margin-left: 32rpx;
-  flex: 1;
+  align-items: center;
+  text-align: center;
 }
 
 .name {
